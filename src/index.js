@@ -3,11 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Main from './components/Main';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import usersReducer from './features/userSlice'
+
+const store = configureStore({
+  reducer: {
+    users: usersReducer
+  }
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Main />
+    <Provider store={store}>
+      <Main />
+    </Provider>
   </React.StrictMode>
 );
 
