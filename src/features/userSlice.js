@@ -9,17 +9,15 @@ export const userSlice = createSlice({
     initialState: initialState,
     reducers: {
         addUser: (state, action) => {
-            console.log(action)
-            console.log(state)
             state.list.push(action.payload.user)
         },
         removeUser: (state, action) => {
-            const userIndex = state.users.find(user => 
-                action.payload.userName === user.name)
-            state.users.splice(userIndex, 1)
+            const userIndex = state.list.findIndex(user => action.payload.userName === user.name)
+            console.log(userIndex)
+            state.list.splice(userIndex, 1)
         }
     }
 })
 
-export const { addUser } = userSlice.actions
+export const { addUser, removeUser } = userSlice.actions
 export default userSlice.reducer
